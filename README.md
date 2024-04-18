@@ -2,6 +2,8 @@
 
 This ARM template deploys a gaming virtual machine ("gamevm") configured with specific network security rules and a public IP, making it ready for gaming scenarios. The deployment includes configuring network interfaces, security groups, and a public IP address.
 
+###[Deploy to Azure](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Ftheonemule%2Fazure-gaming-pc%2Fmain%2Ftemplate.json)
+
 ## Prerequisites
 
 - Azure Subscription
