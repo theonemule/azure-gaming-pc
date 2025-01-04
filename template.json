@@ -2,7 +2,17 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "virtualMachines_gamevm_name": {
+		"virtualMachines_Region": {
+            "defaultValue": "eastus2",
+			"allowedValues": [
+				"eastus2",
+				"japaneast",
+				"swedencentral",
+				"westeurope"
+			],
+            "type": "String"
+        },
+		"virtualMachines_gamevm_name": {
             "defaultValue": "gamevm",
             "type": "String"
         },
@@ -52,7 +62,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2023-09-01",
             "name": "[parameters('networkSecurityGroups_gamevm_nsg_name')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('virtualMachines_Region')]",
             "properties": {
                 "securityRules": [
                     {
@@ -119,7 +129,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2023-09-01",
             "name": "[parameters('publicIPAddresses_gamevm_ip_name')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('virtualMachines_Region')]",
             "sku": {
                 "name": "Standard",
                 "tier": "Regional"
@@ -135,7 +145,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2023-09-01",
             "name": "[parameters('virtualNetworks_gamevm_name')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('virtualMachines_Region')]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -163,7 +173,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2023-03-01",
             "name": "[parameters('virtualMachines_gamevm_name')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('virtualMachines_Region')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_gamevm_name'))]"
             ],
@@ -178,7 +188,7 @@
                     "imageReference": {
                         "publisher": "microsoftwindowsdesktop",
                         "offer": "windows-11",
-                        "sku": "win11-21h2-pro",
+                        "sku": "win11-24h2-pro",
                         "version": "latest"
                     },
                     "osDisk": {
@@ -310,7 +320,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2023-09-01",
             "name": "[parameters('networkInterfaces_gamevm_name')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('virtualMachines_Region')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_gamevm_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_gamevm_name'), 'default')]",
