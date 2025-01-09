@@ -1,4 +1,4 @@
-# ARM Template for Gaming VM Setup
+# ARM Template for Gaming VM Setup -- It's AWESOME!
 
 This ARM template deploys a gaming virtual machine ("gamevm") configured with specific network security rules and a public IP, making it ready for gaming scenarios. The deployment includes configuring network interfaces, security groups, and a public IP address.
 
