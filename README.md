@@ -15,7 +15,7 @@ This ARM template deploys a gaming virtual machine ("gamevm") configured with sp
 This template provisions the following resources:
 
 - **Virtual Machine**:
-  - Configured with Windows 11 (Windows-11, 21h2-pro)
+  - Configured with Windows 11 (win11-24h2-pro)
   - Options for various VM sizes based on the gaming requirements (Standard_NG8ads_V620_v1, Standard_NG16ads_V620_v1, Standard_NG32ads_V620_v1)
   - Optional spot instance configuration for cost efficiency
 
